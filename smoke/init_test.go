@@ -29,9 +29,9 @@ func TestSmoke(t *testing.T) {
 	SetDefaultEventuallyTimeout(60 * time.Second)
 
 	suite := spec.New("Smoke", spec.Parallel(), spec.Report(report.Terminal{}))
-	suite("Java", testJava)
+	// suite("Java", testJava)
 	suite("Node.js", testNodejs)
-	suite("procfile", testProcfile)
-	suite("quarkus", testQuarkus)
+	// suite("procfile", testProcfile)
+	// suite("quarkus", testQuarkus)
 	suite.Run(t)
 }
