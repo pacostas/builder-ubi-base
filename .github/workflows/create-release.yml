@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+  workflow_dispatch:
+
 
 concurrency: release
 
@@ -70,7 +72,6 @@ jobs:
 
     - name: Publish Release
       id: publish
-      if: ${{ steps.compare_previous_release.outputs.builder_changes == 'true' }}
       uses: release-drafter/release-drafter@v5
       with:
         config-name: release-drafter-config.yml
@@ -79,7 +80,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
 
     - name: Update Release Notes
-      if: ${{ steps.compare_previous_release.outputs.builder_changes == 'true' }}
       run: |
         set -euo pipefail
         shopt -s inherit_errexit
